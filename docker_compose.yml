@@ -1,0 +1,44 @@
+#compose springboot:
+version: '3.7'
+networks:
+  mynetwork:
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24
+services:
+  springboot:
+    image: openjdk:18-alpine
+    container_name: springboot
+    ports:
+      - 8080:8080
+    restart: always
+    volumes:
+      #add target/*.jar to the container
+      - ./target/Barfa-0.0.1-SNAPSHOT.jar:/springboot/app.jar
+    working_dir: /springboot
+
+    entrypoint:
+      - java
+      - -jar
+      - /springboot/app.jar
+    networks:
+      mynetwork:
+        ipv4_address: 172.20.0.3
+  postgresql:
+    image: postgres
+    container_name: postgresql
+    ports:
+      - 5432:5432
+    restart: always
+    volumes:
+      - ./postgresql:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    #set the ip of the postgresql container
+    networks:
+      mynetwork:
+        ipv4_address: 172.20.0.2
+
+
