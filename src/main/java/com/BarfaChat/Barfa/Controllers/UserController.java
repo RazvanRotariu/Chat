@@ -8,5 +8,6 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     @PostMapping
     public void getUser(@RequestBody User user){
+        System.out.println(user.getEmail()+"|"+user.getFirstName()+"|"+user.getLastName()+"|"+user.getUsername());
     }
 }
