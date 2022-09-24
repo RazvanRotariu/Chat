@@ -1,11 +1,13 @@
 package com.BarfaChat.Barfa.Models;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 
+@Entity
+@Table(name="users")
 public class User {
+    public User() {
+    }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -19,6 +21,9 @@ public class User {
     }
     public void setUsername(String username) {
         this.username = username;
+    }
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getLastName() {
@@ -38,6 +43,9 @@ public class User {
     public String getUsername() {
         return username;
     }
+    public String getPassword() {
+        return password;
+    }
     @Id
     @SequenceGenerator(
             name="user_sequence",
@@ -52,6 +60,7 @@ public class User {
     private String lastName;
     private String email;
     private String username;
+    private String password;
 
     public User(String firstName, String lastName, String email, String username) {
         this.firstName = firstName;
