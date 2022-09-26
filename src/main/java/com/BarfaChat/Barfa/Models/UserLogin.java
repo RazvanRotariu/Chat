@@ -21,7 +21,6 @@ public class UserLogin {
         this.userName = userName;
         this.password = password;
     }
-
     private String userName;
     private String password;
 }
