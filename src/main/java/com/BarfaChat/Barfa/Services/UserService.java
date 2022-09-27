@@ -17,20 +17,23 @@ public class UserService {
         super();
         this.userRepository = userRepository;
     }
-    public UserLogin loadUserByUsername(String userName) {
+    public String loadUserByUsername(String userName) {
         if (userName == null || userName.isEmpty()) {
             throw new IllegalArgumentException("Username cannot be empty");
         }
 
-        User user = userRepository.findBy(userName);
+        User user = userRepository.findByUsername(userName);
         if (user != null) {
             return user.toCurrentUserDetails();
         }
         throw new IllegalArgumentException("Username is not Found!");
     }
 
+  public List<User> findAll() {
+    return userRepository.findAll();
+  }
 
-    public List<User> findAll() {
-
+    public void PostUser(User user) {
+        userRepository.save(user);
     }
 }
