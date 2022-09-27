@@ -1,6 +1,7 @@
 package com.BarfaChat.Barfa.Controllers;
 import com.BarfaChat.Barfa.Models.User;
 import com.BarfaChat.Barfa.Repositories.UserRepository;
+import com.BarfaChat.Barfa.Services.UserService;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,12 +13,11 @@ public class UserController {
     public void getUser(@RequestBody User user){
         System.out.println(user.getEmail()+"|"+user.getFirstName()+"|"+user.getLastName()+"|"+user.getUsername());
     }
-
-    public UserController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UserController(UserService userService) {
+        this.userService= userService;
     }
-    private final UserRepository userRepository;
+    private final UserService userService;
     public List<User> getUser(){
-        return userRepository.findAll();
+        return userService.findAll();
     }
 }
