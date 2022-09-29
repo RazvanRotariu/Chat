@@ -19,7 +19,7 @@ public class UserController {
   public void getUser(@RequestBody User user) {
     userService.PostUser(user);
   }
-
+  @CrossOrigin(origins = "http://localhost:4200")
   @GetMapping
   public List<User> getUser() {
     return userService.findAll();
