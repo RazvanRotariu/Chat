@@ -1,7 +1,7 @@
 package com.BarfaChat.Barfa.Controllers;
 
 import com.BarfaChat.Barfa.Models.User;
-import com.BarfaChat.Barfa.Repositories.UserRepository;
+import com.BarfaChat.Barfa.Services.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -9,19 +9,19 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "api/v1/User")
 public class UserController {
-    private final UserRepository userRepository;
+  private final UserService userService;
 
-    public UserController(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+  public UserController(UserService userService) {
+    this.userService = userService;
+  }
 
-    @PostMapping
-    public void getUser(@RequestBody User user) {
-        System.out.println(user.getEmail() + "|" + user.getFirstName() + "|" + user.getLastName() + "|" + user.getUsername());
-    }
+  @PostMapping
+  public void getUser(@RequestBody User user) {
+    userService.PostUser(user);
+  }
 
-    @GetMapping
-    public List<User> getUser() {
-        return userRepository.findAll();
-    }
+  @GetMapping
+  public List<User> getUser() {
+    return userService.findAll();
+  }
 }
