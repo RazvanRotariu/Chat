@@ -36,4 +36,16 @@ public class UserService {
     public void PostUser(User user) {
         userRepository.save(user);
     }
+
+    public String login(UserLogin userLogin) {
+        User user=userRepository.findByUsername(userLogin.getUserName());
+        if(user != null){
+            if(user.getPassword().equals(userLogin.getPassword())) {
+                return "Login Sucessful";
+            }
+            else
+                return "Wrong Password";
+        }
+        return "Username doesn't exist";
+    }
 }
