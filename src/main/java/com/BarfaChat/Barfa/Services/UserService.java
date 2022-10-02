@@ -1,5 +1,6 @@
 package com.BarfaChat.Barfa.Services;
 
+import com.BarfaChat.Barfa.Models.Response;
 import com.BarfaChat.Barfa.Models.User;
 import com.BarfaChat.Barfa.Models.UserLogin;
 import com.BarfaChat.Barfa.Repositories.UserRepository;
@@ -39,14 +40,17 @@ public class UserService {
     userRepository.save(user);
   }
 
-  public String login(UserLogin userLogin) {
+  public Response login(UserLogin userLogin) {
+    Response response = new Response();
     User user = userRepository.findByUsername(userLogin.getUserName());
     if (user != null) {
       if (user.getPassword().equals(userLogin.getPassword())) {
-        return "Login Sucessful";
-      } else return "Wrong Password";
+        response.setResponse("Login Success");
+      } else response.setResponse("Password is not correct");
+    } else {
+      response.setResponse("Username is not found");
     }
-    return "Username doesn't exist";
+    return response;
   }
 
   public void deleteUser(Long userId) {
