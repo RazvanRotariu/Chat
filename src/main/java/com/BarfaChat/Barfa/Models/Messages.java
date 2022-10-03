@@ -1,8 +1,6 @@
 package com.BarfaChat.Barfa.Models;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 public class Messages {
     public String getSender() {
@@ -20,6 +18,7 @@ public class Messages {
     public void setReceiver(String receiver) {
         this.receiver = receiver;
     }
+
     public String getMessage() {
         return message;
     }
@@ -27,6 +26,8 @@ public class Messages {
     public void setMessage(String message) {
         this.message = message;
     }
+
+    public LocalDateTime getTime() {return time;}
 
     public Messages(String sender, String receiver, String message, LocalDateTime time) {
         this.sender = sender;
