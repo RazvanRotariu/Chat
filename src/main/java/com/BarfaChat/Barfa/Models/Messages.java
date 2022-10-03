@@ -36,11 +36,13 @@ public class Messages {
         this.time = time;
     }
 
-    private String sender;
-    private String receiver;
+    private User sender;
+    private User receiver;
 
     private String message;
 
     private final LocalDateTime time;
+
+    private long id;
 
 }
