@@ -3,7 +3,7 @@ package com.BarfaChat.Barfa.Models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Conversations")
+@Table(name = "Messages")
 public class Message {
     @Id
     @SequenceGenerator(
@@ -22,25 +22,25 @@ public class Message {
     public Message() {
     }
 
-    public Message(User sender, User receiver, String text) {
+    public Message(User sender, User receiver, String message) {
         this.sender = sender;
         this.receiver = receiver;
-        this.text = text;
+        this.message = message;
     }
 
     @ManyToOne
     @JoinColumn(name = "receiver_id")
     private User receiver;
 
-    public String getText() {
-        return text;
+    public String getMessage() {
+        return message;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setMessage(String message) {
+        this.message =message;
     }
 
-    private String text;
+    private String message;
 
     public User getReceiver() {
         return receiver;

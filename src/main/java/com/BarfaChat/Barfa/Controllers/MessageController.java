@@ -4,7 +4,6 @@ import com.BarfaChat.Barfa.Models.Message;
 import com.BarfaChat.Barfa.Models.User;
 import com.BarfaChat.Barfa.Services.MessageService;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -29,5 +28,13 @@ public class MessageController {
         return messageService.GetMessages();
     }
 
+    @PutMapping(path = "{id}")
+    public void updateUser(@PathVariable("id") Long id, @RequestBody Message message) {
+        messageService.updateMessage(id, message);}
 
-}
+        @DeleteMapping(path = "{id}")
+        public void deleteMessage (@PathVariable("id") Long id){
+            messageService.deleteMessage(id);
+        }
+
+    }
